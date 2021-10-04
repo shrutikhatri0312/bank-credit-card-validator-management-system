@@ -219,8 +219,11 @@ int main(){
             if(acc[i].name==n)
                 break;
         }
-        if(i==acc.size())
+       if(i==acc.size())
+        {
+            cout<<"!!!!! NO SUCH ACCOUNT !!!!!\nADDRESS THE ADMIN TO OPEN NEW ACCOUNT";
             return 0;
+        }
         do{                
             cout<<"\nENTER WORK TO DO(PRESS 0 TO EXIT) :\n1.DEPOSIT\t2.WITHDRAW\n";
             cin>>w;
