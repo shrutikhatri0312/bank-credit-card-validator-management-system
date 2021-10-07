@@ -44,9 +44,22 @@ class admin{
     public:
     string username;
     string password; 
+    int accnum;
+    vector<accounts> a;
     admin(){
         username="shruti";
         password="0312";
+        accnum=4;
+        for(int i=0;i<4;i++){//default accounts
+        accounts ac;
+        ac.name="aabbcc"+i;
+        ac.address="xyz block street "+i;
+        ac.phn_no=98756+i;
+        ac.ifsc_code=1234+i;
+        ac.card_num=4111111111111111+i;
+        ac.balance=1000+2000*i;
+        a.push_back(ac);
+    }
     }
     bool loginadmin(){
         string user,pass;
@@ -68,7 +81,7 @@ class admin{
         cout<<"NO SUCH USERNAME!!!!!!!!!!!!\a\a";
         return false;
     }
-    void addacc(vector<accounts> a){
+    void addacc(){
         accounts n;
         cout<<"ENTER ACCOUNT DETAILS :\nNAME:\t";
         cin>>n.name;
@@ -83,8 +96,9 @@ class admin{
         cout<<"BALANCE :\t";
         cin>>n.balance;
         a.push_back(n);
+        accnum++;
     }
-    void search(vector<accounts> a){
+    void search(){
         long long int c;
         cout<<"ENTER CARD NUMBER TO SEARCH :\t";
         cin>>c;
@@ -99,8 +113,8 @@ class admin{
         }
         cout<<"-----------------------NOT FOUND-----------------------------";
     }
-    int totalacc(vector<accounts> a){
-        return a.size();
+    int totalacc(){
+        return accnum;
     }
 
     void checkcardvalidity(){
@@ -158,45 +172,37 @@ class admin{
 
 int main(){
     int choice,w;
-    admin a;  
-    vector<accounts> acc;
-    for(int i=0;i<4;i++){//default accounts
-        accounts ac;
-        ac.name="aabbcc"+i;
-        ac.address="xyz block street "+i;
-        ac.phn_no=98756+i;
-        ac.ifsc_code=1234+i;
-        ac.card_num=4111111111111111+i;
-        ac.balance=1000+2000*i;
-        acc.push_back(ac);
-    }
+    admin ad;  
+    
+    
     cout<<"***************************************************************************************************************************\n";
     cout<<"****************************************BANK CREDIT CARD VALIDATION CENTER ************************************************\n";
     cout<<"***************************************************************************************************************************\n\n";
-    cout<<"\t\t\t\t\t\tLOGIN PORTAL\n1.ADMIN\n2.CLIENT\n";
+    do{
+    cout<<"\t\t\t\t\t\tLOGIN PORTAL\n(PRESS 0 TO EXIT)\n1.ADMIN\n2.CLIENT\n";
     cin>>choice;
     if(choice==1)
         {          
-            if(a.loginadmin())
+            if(ad.loginadmin())
             {
                 do{                
                     cout<<"\nENTER WORK TO DO(PRESS 0 TO EXIT) :\n1.ADD ACCOUNT\t2.SEARCH ACCOUNT\t3.TOTAL NUMBER OF ACCOUNT\t4.CHECK CARD VALIDITY\n";
                     cin>>w;
                     switch(w){
                         case 1:{
-                            a.addacc(acc);
+                            ad.addacc();
                             break;
                         }
                         case 2:{
-                            a.search(acc);
+                            ad.search();
                             break;
                         }
                         case 3:{
-                            cout<<"NUMBER OF ACCOUNTS :\t"<<a.totalacc(acc);
+                            cout<<"NUMBER OF ACCOUNTS :\t"<<ad.totalacc();
                             break;
                         }
                         case 4:{
-                            a.checkcardvalidity();
+                            ad.checkcardvalidity();
                             break;
                         }
                         case 0:{
@@ -214,12 +220,12 @@ int main(){
         cout<<"ENTER ACCOUNT HOLDER'S NAME :\t";
         cin>>n;
         int i;
-        for(i=0;i<acc.size();i++)
+        for(i=0;i<ad.a.size();i++)
         {
-            if(acc[i].name==n)
+            if(ad.a[i].name==n)
                 break;
         }
-       if(i==acc.size())
+       if(i==ad.a.size())
         {
             cout<<"!!!!! NO SUCH ACCOUNT !!!!!\nADDRESS THE ADMIN TO OPEN NEW ACCOUNT";
             return 0;
@@ -229,12 +235,12 @@ int main(){
             cin>>w;
             switch(w){
                 case 1:{
-                    int d=acc[i].deposit();
+                    int d=ad.a[i].deposit();
                         cout<<"TOTAL BALANCE :\t"<<d;
                     break;
                 }
                 case 2:{
-                    int d=acc[i].withdraw();
+                    int d=ad.a[i].withdraw();
                     if(d)
                         cout<<"BALANCE LEFT :\t"<<d;
                     break;
@@ -245,8 +251,10 @@ int main(){
                     cout<<"------------------------------------INVALID INPUT------------------------------------";
             }
     }while(w);
-   
     
-        return 0;
+   
+        
     }
+    }while(choice);
+    return 0;
 }
