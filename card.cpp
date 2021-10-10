@@ -83,9 +83,9 @@ class admin{
     }
     void addacc(){
         accounts n;
-        cout<<"ENTER ACCOUNT DETAILS :\nNAME:\t";
+        cout<<"ENTER ACCOUNT DETAILS :\nNAME(CAMELCASE):\t";
         cin>>n.name;
-        cout<<"ADDRESS :\t";
+        cout<<"ADDRESS(CAMELCASE) :\t";
         cin>>n.address;
         cout<<"IFSC CODE(4-DIGITS) :\t";
         cin>>n.ifsc_code;
