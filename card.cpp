@@ -87,7 +87,7 @@ class admin{
         cin>>n.name;
         cout<<"ADDRESS :\t";
         cin>>n.address;
-        cout<<"IFSC CODE :\t";
+        cout<<"IFSC CODE(4-DIGITS) :\t";
         cin>>n.ifsc_code;
         cout<<"PHONE NUMBER :\t";
         cin>>n.phn_no;
