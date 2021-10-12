@@ -88,7 +88,16 @@ class admin{
         cout<<"ADDRESS(CAMELCASE) :\t";
         cin>>n.address;
         cout<<"IFSC CODE(4-DIGITS) :\t";
-        cin>>n.ifsc_code;
+        long a;
+        cin>>a;
+        if(a>9999)
+        {
+            cout<<"INVALID INPUT TRY AGAIN!!!!!\n";
+            goto ifsc;
+        }
+        else 
+            n.ifsc_code=a;
+        }
         cout<<"PHONE NUMBER :\t";
         cin>>n.phn_no;
         cout<<"CARD NUMBER :\t";
